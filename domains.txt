@@ -1,2 +1,2 @@
-xwstech.top
+example.top
 test.com

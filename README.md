@@ -9,6 +9,6 @@
 2. получить CloudFlare API KEY  
 3. получить MailCow API KEY  
 4. заполнить .env  
-5. запустить python3 ./ clf-add-dns.py  
+5. запустить python3 ./ clf-add-dns.py    
 
 
