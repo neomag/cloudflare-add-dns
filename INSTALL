@@ -1,0 +1,25 @@
+как создать api token для Cloudflare
+https://developers.cloudflare.com/fundamentals/api/get-started/create-token/
+
+#установка docker 
+curl -fsSL https://get.docker.com -o install-docker.sh && sh ./install-docker.sh
+
+#установка mailcow
+git clone https://github.com/mailcow/mailcow-dockerized
+cd mailcow-dockerized
+hostnamectl set-hostname mail.example.com
+
+
+# можно задать API_KEY в generate_config.sh
+# Create or override an API key for the web UI
+# You _must_ define API_ALLOW_FROM, which is a comma separated list of IPs
+# An API key defined as API_KEY has read-write access
+# An API key defined as API_KEY_READ_ONLY has read-only access
+# Allowed chars for API_KEY and API_KEY_READ_ONLY: a-z, A-Z, 0-9, -
+# You can define API_KEY and/or API_KEY_READ_ONLY
+
+
+MAILCOW_HOSTNAME=$(hostname) MAILCOW_TZ=$(cat /etc/timezone) SKIP_BRANCH=y MAILCOW_BRANCH="master" ./generate_config.sh
+
+docker compose pull
+docker compose up -d
