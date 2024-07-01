@@ -1,5 +1,4 @@
 import requests
-import json
 import os.path
 from dotenv import load_dotenv
 
@@ -18,7 +17,7 @@ def add(d:str):
 
     MAILCOWAPITOKEN    = os.getenv('MAILCOWAPITOKEN')
     MAILCOWAPIURL      = os.getenv('MAILCOWAPIURL')
-    MAILCOWAMAINDOMAIN = os.getenv('MAILCOWAMAINDOMAIN')
+
 
 
     headers = {

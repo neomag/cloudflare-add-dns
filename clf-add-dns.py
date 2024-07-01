@@ -20,11 +20,9 @@ else:
     exit()
 
 
-URLzones   = os.getenv('URLzones')
+URLzones = os.getenv('URLzones')
 TOKEN = os.getenv('TOKEN')
 
-
-#headers = {f"Content-Type": "application/json; Authorization: Bearer {URLzones}}"}
 headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer '+TOKEN
@@ -34,10 +32,10 @@ headers = {
 #Get domains and IDs via CF API
 response = requests.get(URLzones, headers=headers)
 if response.status_code == 200:
-   pass
+    pass
 else:
-   print('CloudFlare api вернул ошибку!: {response.text} ')
-   exit()
+    print('CloudFlare api вернул ошибку!: {response.text} ')
+    exit()
 
 #сохраняем чтобы не дергать api при отладке
 with open("data.json", "w") as json_file:
@@ -65,13 +63,16 @@ ips_from_file = []
 with open('ips.txt') as file:
   ips_from_file = file.read().splitlines()
 
-
+domaincount = 0
 for d, ip in zip(domains_from_file, ips_from_file):
     for item in parsed_json["result"]:
         if item["name"] == d:
-           domains[d] = { 'domain_id': item["id"] , 'domain_ip': ip }
+           print('в API Cloudflare найден домен: {d}')
+           domains[d] = { 'domain_id': item["id"], 'domain_ip': ip }
+           domaincount+=1
+if domaincount == 0:
+    print('в API Cloudflare  НЕ найден НИ один домен из domains.txt!  проверьте NS...')   
            
-
 def add_record(content:str, name:str, type:str, id:str, domain:str,):
     ADDRECORD_URL = f'https://api.cloudflare.com/client/v4/zones/{id}/dns_records'
     data = {}
