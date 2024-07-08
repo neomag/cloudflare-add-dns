@@ -1,6 +1,1 @@
-.env
-.env.sample
-.vscode
-__pycache__
-data.json
-_evak
+*

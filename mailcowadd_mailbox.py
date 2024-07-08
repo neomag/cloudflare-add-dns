@@ -2,26 +2,36 @@ import requests
 import os.path
 from dotenv import load_dotenv
 
-def add(d:str):
+def add(d:str,  MAILCOWAPITOKEN:str, MAILCOWAPIURL:str, MAILCOWMBOXDEFAULTPASS:str, MAILCOWMBOXDEFAULTNAME:str, mailboxes:list ):
     #настраиваемся на каталог запуска, на случай вызова из непредвиденного места
-    current_file = os.path.realpath(__file__)
-    current_directory = os.path.dirname(current_file)
-    os.chdir(current_directory)
+    # current_file = os.path.realpath(__file__)
+    # current_directory = os.path.dirname(current_file)
+    # os.chdir(current_directory)
 
-    #читаем .env
-    if os.path.isfile('.env'):
-        load_dotenv()
-    else:
-        print("ERROR! .env file NOT found, exit")
-        exit()
+    # #читаем .env
+    # if os.path.isfile('.env'):
+    #     load_dotenv()
+    # else:
+    #     print("ERROR! .env file NOT found, exit")
+    #     exit()
 
-    MAILCOWAPITOKEN    = os.getenv('MAILCOWAPITOKEN')
-    MAILCOWAPIURL      = os.getenv('MAILCOWAPIURL')
-    MAILCOWMBOXDEFAULTPASS = os.getenv('MAILCOWMBOXDEFAULTPASS')
-
+    # MAILCOWAPITOKEN    = os.getenv('MAILCOWAPITOKEN')
+    # MAILCOWAPIURL      = os.getenv('MAILCOWAPIURL')
+    MAILCOWAPITOKEN = MAILCOWAPITOKEN
+    MAILCOWAPIURL = MAILCOWAPIURL
+    MAILCOWMBOXDEFAULTPASS = MAILCOWMBOXDEFAULTPASS
+    MAILCOWMBOXDEFAULTNAME = MAILCOWMBOXDEFAULTNAME
+    print(MAILCOWAPITOKEN, MAILCOWAPIURL, MAILCOWMBOXDEFAULTPASS, MAILCOWMBOXDEFAULTNAME, mailboxes)
     
-    with open('mailbox.txt') as file:
-        mailboxes = file.read().splitlines()
+    #  = os.getenv('MAILCOWMBOXDEFAULTPASS')
+    # MAILCOWMBOXDEFAULTNAME = os.getenv('MAILCOWMBOXDEFAULTNAME')
+
+
+    #
+
+
+    # with open('mailbox.txt') as file:
+    #     mailboxes = file.read().splitlines()
 
     headers = {
         'accept': 'application/json',
@@ -33,7 +43,7 @@ def add(d:str):
             "active": "1",
             "domain": d,
             "local_part": mbox,
-            "name": "Jon Doe",
+            "name": MAILCOWMBOXDEFAULTNAME,
             "password": MAILCOWMBOXDEFAULTPASS,
             "password2": MAILCOWMBOXDEFAULTPASS,
             "quota": "3072",
