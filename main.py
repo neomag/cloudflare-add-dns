@@ -31,17 +31,19 @@ except:
 
 # создаем domains.txt и regru_domains.txt из mailcows.json для обратной совместимости с предыдущей версией кода
 # to-do: refactor
+ips = []
 domains_from_file = []
 for x in mailcows.values():
     ADDITIONAL_DOMAINS = x['ADDITIONAL_DOMAINS']
     for doms in ADDITIONAL_DOMAINS:
         domains_from_file.append(doms)
-
+        ips.append(x['ip_address'])
 with open('domains.txt', 'w') as file:
     file.write('\n'.join(domains_from_file))
 with open('regru-domains.txt', 'w') as file:
     file.write('\n'.join(domains_from_file))
-
+with open('ips.txt', 'w') as file:
+    file.write('\n'.join(ips))
 
 
 for x in mailcows.values():
