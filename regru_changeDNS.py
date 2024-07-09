@@ -33,6 +33,26 @@ def change():
         'Authorization': 'Bearer '+CFL_API_TOKEN
     }
 
+    # создаем domains.txt и regru_domains.txt из mailcows.json для обратной совместимости с предыдущей версией кода
+    # to-do: refactor
+    # читаем mailcows.json
+    try:
+        with open('mailcows.json') as file:
+            file_contents = file.read()
+            mailcows = json.loads(file_contents)
+    except:
+        print('что-то пошло не так, скорее всего неверный формат файла mailcows.json, проверьте валидатором https://codebeautify.org/json-fixer')
+        exit()
+    domains_from_file = []
+    for x in mailcows.values():
+        ADDITIONAL_DOMAINS = x['ADDITIONAL_DOMAINS']
+        for doms in ADDITIONAL_DOMAINS:
+            domains_from_file.append(doms)
+
+    with open('domains.txt', 'w') as file:
+        file.write('\n'.join(domains_from_file))
+    with open('regru-domains.txt', 'w') as file:
+        file.write('\n'.join(domains_from_file))
 
     with open('regru-domains.txt') as file:
         domains_regru= file.read().splitlines()
@@ -48,7 +68,6 @@ def change():
     #сохраняем чтобы не дергать api при отладке
     with open("clf-verify-retarget.json", "w") as json_file:
         json.dump(response.json(), json_file, indent=4)
-
 
     #читам из файла дамп запроса к api чтобы не дергать api
     with open('clf-verify-retarget.json') as file:

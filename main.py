@@ -7,6 +7,7 @@ import mailcowadd_mailbox
 import clf_add_dns_v2
 import regru_changeDNS
 import argparse
+import clf_add_domains_v2
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--skipregru", help="пропускает шаг перенацеливания DNS REG.RU на CloudFlare",default = True, nargs='?')
@@ -42,6 +43,7 @@ with open('regru-domains.txt', 'w') as file:
     file.write('\n'.join(domains_from_file))
 
 
+
 for x in mailcows.values():
     SMTP_ORIGIN = x['name']
     MAILCOWAPITOKEN = x['MAILCOWAPITOKEN']
@@ -56,11 +58,14 @@ for x in mailcows.values():
         #if doms == 'xxx.online':
         #    print('___STOP! by debug line')
         #    exit()
+        
+        # добавить шан добавления доменов на CLF
+        clf_add_domains_v2.add_domains()
         mailcowadd_domain.add(doms, MAILCOWAPITOKEN, MAILCOWAPIURL )
         mailcowadd_mailbox.add(doms, MAILCOWAPITOKEN, MAILCOWAPIURL, MAILCOWMBOXDEFAULTPASS, MAILCOWMBOXDEFAULTNAME, mailboxes )
-        #regru_changeDNS.change()
+        regru_changeDNS.change()
         clf_add_dns_v2.add_records_v2(doms, SMTP_ORIGIN, MAILCOWAPITOKEN, MAILCOWAPIURL )
-        print('все скрипты завершили работу')
+    print('все скрипты завершили работу')
          
 
 
