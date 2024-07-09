@@ -58,9 +58,7 @@ for x in mailcows.values():
         #    exit()
         mailcowadd_domain.add(doms, MAILCOWAPITOKEN, MAILCOWAPIURL )
         mailcowadd_mailbox.add(doms, MAILCOWAPITOKEN, MAILCOWAPIURL, MAILCOWMBOXDEFAULTPASS, MAILCOWMBOXDEFAULTNAME, mailboxes )
-        if not args.skipregru:
-            print('перенацеливание DNS с REG.RU на CloudFlare')
-            regru_changeDNS.change()
+        #regru_changeDNS.change()
         clf_add_dns_v2.add_records_v2(doms, SMTP_ORIGIN, MAILCOWAPITOKEN, MAILCOWAPIURL )
          
 
