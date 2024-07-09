@@ -35,7 +35,7 @@ def change():
 
 
     with open('regru-domains.txt') as file:
-    domains_regru= file.read().splitlines()
+        domains_regru= file.read().splitlines()
 
     print('читаем домены из CloudFlare')
     response = requests.get(CFL_API_URLzones+'/?&per_page=1000', headers=headers)
@@ -52,7 +52,7 @@ def change():
 
     #читам из файла дамп запроса к api чтобы не дергать api
     with open('clf-verify-retarget.json') as file:
-    file_contents = file.read()
+        file_contents = file.read()
     parsed_json = json.loads(file_contents)
 
 
