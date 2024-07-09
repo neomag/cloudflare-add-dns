@@ -60,6 +60,7 @@ for x in mailcows.values():
         mailcowadd_mailbox.add(doms, MAILCOWAPITOKEN, MAILCOWAPIURL, MAILCOWMBOXDEFAULTPASS, MAILCOWMBOXDEFAULTNAME, mailboxes )
         #regru_changeDNS.change()
         clf_add_dns_v2.add_records_v2(doms, SMTP_ORIGIN, MAILCOWAPITOKEN, MAILCOWAPIURL )
+        print('все скрипты завершили работу')
          
 
 
