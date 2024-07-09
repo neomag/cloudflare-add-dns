@@ -19,3 +19,4 @@
 !split_domains_by_servers.py
 !dell-all.sh
 !clf-dele-ALL-zones.py
+!clf_add_domains_v2.py
