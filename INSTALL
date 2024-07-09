@@ -5,6 +5,7 @@ https://developers.cloudflare.com/fundamentals/api/get-started/create-token/
 curl -fsSL https://get.docker.com -o install-docker.sh && sh ./install-docker.sh
 
 #установка mailcow
+cd /opt
 git clone https://github.com/mailcow/mailcow-dockerized
 cd mailcow-dockerized
 hostnamectl set-hostname mail.example.com
@@ -23,3 +24,19 @@ MAILCOW_HOSTNAME=$(hostname) MAILCOW_TZ=$(cat /etc/timezone) SKIP_BRANCH=y MAILC
 
 docker compose pull
 docker compose up -d
+
+# заполнить regru-domains.txt
+
+
+# разное:
+# у хостера прописываем обратный записи для DNS PTR
+# ящик test желателен на каждом домене, на него нацелен DMARC
+
+# TODO:
+# добавление A, AAAA, TLSA для базового домена
+# зарефакторить mailcow-add-domains_v2 чтобы читало из mailcows.json
+# зарефакторить regru_changeDNS чтобы читало из mailcows.json
+
+
+
+

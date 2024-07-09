@@ -1,0 +1,32 @@
+{
+    "smtp.abc.com": 
+        {
+            "name":                     "smtp.abc.com",
+            "MAILCOWAPITOKEN":          "ASDFASFD-0FD79E-0680C5-C534F1-E08FDE",
+            "MAILCOWAPIURL":            "https://smtp.abc.com",
+            "MAILCOWAMAINDOMAIN":       "smtp.outreachgo.ru",
+            "MAILCOWDKINDOMAIN":        "outreachgo.ru",
+            "MAILCOWMBOXDEFAULTPASS":   "secr&tPas$$Word",
+            "MAILCOWMBOXDEFAULTNAME":   "Jon Doe",
+            "ADDITIONAL_DOMAINS":      ["aaaa.com", "bbb.org"]
+            "ip_address": "127.0.0.2",
+            "mailboxes": ["test", "hello", "hi", "care", "hey"]
+        },
+        
+        "smtp.outreach.com":
+        {
+            "name":                     "smtp.outreach.com",
+            "MAILCOWAPITOKEN":          "569662-0D9D73-7D5C1F-B76DC5-A15889",
+            "MAILCOWAPIURL":            "https://smtp.outreach.com",
+            "MAILCOWAMAINDOMAIN":       "BBBB.BBB",
+            "MAILCOWDKINDOMAIN":        "smtp.BBBB",
+            "MAILCOWMBOXDEFAULTPASS":   "somePassw0rd",
+            "MAILCOWMBOXDEFAULTNAME":   "Jon Week",
+            "ADDITIONAL_DOMAINS":       ["krustycrabs.com", "reddit.com"],
+
+            "ip_address": "127.0.0.3",
+            "mailboxes": ["test","hello", "hi", "care", "hey"]
+        }
+        
+    
+}
