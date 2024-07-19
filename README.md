@@ -17,4 +17,4 @@
 6. заполнить mailcows.json
 7. запустить python3 main.py
 
-
+ 
